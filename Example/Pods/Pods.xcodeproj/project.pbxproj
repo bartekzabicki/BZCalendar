@@ -110,16 +110,16 @@
 		2CC9EA0DC5E12B23CFFFD107F2FBE663 /* KeychainService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainService.swift; path = Unicorns/Classes/Services/KeychainService.swift; sourceTree = "<group>"; };
 		31B2A406DEAA95186CC2630C04994D1D /* Pods-BZCalendar_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BZCalendar_Example.release.xcconfig"; sourceTree = "<group>"; };
 		373F20AEF6F9F445F1CC360C9589C5DC /* Pods-BZCalendar_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BZCalendar_Example-frameworks.sh"; sourceTree = "<group>"; };
-		37649116FC37FCD0A6324A7F64BE396B /* BZCalendar.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = BZCalendar.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		37649116FC37FCD0A6324A7F64BE396B /* BZCalendar.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = BZCalendar.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3ABEBEAEFB04ECE399D4DB4E46D271C2 /* CalendarViewDataSource+Delegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CalendarViewDataSource+Delegate.swift"; path = "BZCalendar/Classes/CalendarViewDataSource+Delegate.swift"; sourceTree = "<group>"; };
 		3B668E2C8122787BCBA16AB9A3AAE073 /* BZCalendar.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BZCalendar.xcconfig; sourceTree = "<group>"; };
 		3D5484AA0AE5FB843925B4BDD9B09214 /* ResourceBundle-BZCalendar-BZCalendar-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-BZCalendar-BZCalendar-Info.plist"; sourceTree = "<group>"; };
 		3F60BFD9322DA13291A42F819841AB37 /* Unicorns-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Unicorns-Info.plist"; sourceTree = "<group>"; };
 		3FD2181859A9B0C9094B99403E8E12E9 /* UITextViewExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UITextViewExtension.swift; path = Unicorns/Classes/Extensions/UITextViewExtension.swift; sourceTree = "<group>"; };
-		43CB7C2F31450E54B68C61AC0C25486D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		43CB7C2F31450E54B68C61AC0C25486D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		49998E12180BADAEBA81EEECD880C93A /* Unicorns-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Unicorns-umbrella.h"; sourceTree = "<group>"; };
 		4A7D28629D2B55092B6D70DBDED5FC26 /* Pods-BZCalendar_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BZCalendar_Example-dummy.m"; sourceTree = "<group>"; };
-		4C4D912FE7F6B5A85F2A2993BBE3ECFD /* BZCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = BZCalendar.framework; path = BZCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C4D912FE7F6B5A85F2A2993BBE3ECFD /* BZCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BZCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE014AF5B3623E8C174E7432DF72FDC /* ArrayExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		56D4F73DE23B69BAE2461AC61CCA8592 /* Pods-BZCalendar_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BZCalendar_Example-umbrella.h"; sourceTree = "<group>"; };
 		5A13365503E09285AADB7D9C5AC745B5 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIViewControllerExtension.swift; path = Unicorns/Classes/Extensions/UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -135,25 +135,25 @@
 		87D76FF2AEF5ABB0D833E2E100EE2282 /* Log.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Log.swift; path = Unicorns/Classes/Helpers/Log.swift; sourceTree = "<group>"; };
 		8E1111DF03AFC6380FF0F734857FB7CF /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Unicorns/Classes/Helpers/Validation.swift; sourceTree = "<group>"; };
 		92789623D8E65B9FF2CC0986B37312E9 /* Networking.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Networking.swift; path = Unicorns/Classes/Helpers/Networking.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DEBAE0E40CEF0A3724F56B4787553E8 /* Pods-BZCalendar_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BZCalendar_Tests-dummy.m"; sourceTree = "<group>"; };
-		9FE3BBAD2265B69C63F316BE0A0033B9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		9FE3BBAD2265B69C63F316BE0A0033B9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A3A3096D88E85ADE3927BB8905975CCD /* Pods-BZCalendar_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BZCalendar_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		ACA9E717DADE2A991778157FEA29FF65 /* UITableViewExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UITableViewExtension.swift; path = Unicorns/Classes/Extensions/UITableViewExtension.swift; sourceTree = "<group>"; };
 		ADA94689F6C23583A391E623FE7362F7 /* UICollectionViewExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UICollectionViewExtension.swift; path = Unicorns/Classes/Extensions/UICollectionViewExtension.swift; sourceTree = "<group>"; };
 		B40FF7CAB33DB26685D814B694E9B13D /* Pods-BZCalendar_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BZCalendar_Example-Info.plist"; sourceTree = "<group>"; };
-		B679D07209D35FD457EAD86EA825581B /* Pods_BZCalendar_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_BZCalendar_Tests.framework; path = "Pods-BZCalendar_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B679D07209D35FD457EAD86EA825581B /* Pods_BZCalendar_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BZCalendar_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B72913F02164F283F96FCEA97DA3C32B /* BZCalendar-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BZCalendar-umbrella.h"; sourceTree = "<group>"; };
 		B75469E19C6D66DF09D3EF49EE44F87A /* Unicorns.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Unicorns.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B781F9690F8BA3AF3ECE10987D46BD7A /* FeatureDisabledViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FeatureDisabledViewController.swift; path = Unicorns/Classes/Controllers/FeatureDisabledViewController.swift; sourceTree = "<group>"; };
 		B7E5D337D205164F5A03F22949BC2D0C /* Pods-BZCalendar_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-BZCalendar_Tests.modulemap"; sourceTree = "<group>"; };
 		BBA6E923114F1ABA4B5AAD8B063C37EA /* BZCalendar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = BZCalendar.modulemap; sourceTree = "<group>"; };
 		BFDBF5A7D48B31EE95FF8E981DFA4D84 /* Pods-BZCalendar_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BZCalendar_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		C01AE25C52F117F9F5550A39686EF972 /* Unicorns.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Unicorns.framework; path = Unicorns.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C52F9462AC5DF1DFB5D74BD05FF4F5B5 /* Pods_BZCalendar_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_BZCalendar_Example.framework; path = "Pods-BZCalendar_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C01AE25C52F117F9F5550A39686EF972 /* Unicorns.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Unicorns.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C52F9462AC5DF1DFB5D74BD05FF4F5B5 /* Pods_BZCalendar_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BZCalendar_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8004CA1281EFEE17C92E32CCD663463 /* Pods-BZCalendar_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BZCalendar_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		D0DD27736CA7630D0C465308A2422241 /* UITabBarItemExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UITabBarItemExtension.swift; path = Unicorns/Classes/Extensions/UITabBarItemExtension.swift; sourceTree = "<group>"; };
-		D2018D7D27AC153C94028158DD2A7D97 /* BZCalendar.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = BZCalendar.bundle; path = "BZCalendar-BZCalendar.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2018D7D27AC153C94028158DD2A7D97 /* BZCalendar.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BZCalendar.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD4A696F184C9AF3BCADB843DC4F26F5 /* UIColorExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = Unicorns/Classes/Extensions/UIColorExtension.swift; sourceTree = "<group>"; };
 		DDDA97F6AD0B5ED05D2B187EAB00E040 /* CalendarViewFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CalendarViewFlowLayout.swift; path = BZCalendar/Classes/CalendarViewFlowLayout.swift; sourceTree = "<group>"; };
 		E0D0700775D1401EEE843994B18C4A77 /* Pods-BZCalendar_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BZCalendar_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -263,7 +263,6 @@
 				8E1111DF03AFC6380FF0F734857FB7CF /* Validation.swift */,
 				0A58D3175E50846A88209C992D4F57E1 /* Support Files */,
 			);
-			name = Unicorns;
 			path = Unicorns;
 			sourceTree = "<group>";
 		};
@@ -556,13 +555,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1020;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
@@ -729,7 +729,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB1830A5145A0EC1A661CC9F2EB4139 /* Unicorns.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -763,7 +762,6 @@
 			baseConfigurationReference = 0655B9267B6C4442301FBF6A55366F17 /* Pods-BZCalendar_Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -797,6 +795,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -846,8 +845,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -874,7 +872,6 @@
 			baseConfigurationReference = A3A3096D88E85ADE3927BB8905975CCD /* Pods-BZCalendar_Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -910,7 +907,6 @@
 			baseConfigurationReference = 5D5983CCD1822DE8D6C4C4F27C9520D9 /* Pods-BZCalendar_Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -944,6 +940,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1024,7 +1021,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECB1830A5145A0EC1A661CC9F2EB4139 /* Unicorns.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1058,7 +1054,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3B668E2C8122787BCBA16AB9A3AAE073 /* BZCalendar.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1091,7 +1086,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3B668E2C8122787BCBA16AB9A3AAE073 /* BZCalendar.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1126,7 +1120,6 @@
 			baseConfigurationReference = 31B2A406DEAA95186CC2630C04994D1D /* Pods-BZCalendar_Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
