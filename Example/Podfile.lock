@@ -1,15 +1,22 @@
 PODS:
-  - BZCalendar (0.1.0)
+  - BZCalendar (0.1.0):
+    - Unicorns (~> 0.2.0)
+  - Unicorns (0.2.1)
 
 DEPENDENCIES:
   - BZCalendar (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Unicorns
 
 EXTERNAL SOURCES:
   BZCalendar:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BZCalendar: 7526892a3f4a90d05bc581a888d2e579b1ec1113
+  BZCalendar: 9052180ffc36c9779af76ceae8a45166e16909c9
+  Unicorns: 8a6d835ff3e861a6c27508fb4110bb6c4293bd46
 
 PODFILE CHECKSUM: 72d240c3845458ec53963c7e86453cde156dd04d
 

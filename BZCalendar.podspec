@@ -28,8 +28,14 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/bartekzabicki/BZCalendar.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '11.0'
 
+  s.dependency 'Unicorns', '~> 0.2.0'
   s.source_files = 'BZCalendar/Classes/**/*'
   s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
+  s.resource_bundles = {
+    'BZCalendar' => [
+    'Pod/**/*.xib'
+    ]
+  }
 end

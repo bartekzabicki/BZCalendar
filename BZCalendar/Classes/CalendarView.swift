@@ -8,20 +8,20 @@
 
 import UIKit
 
-protocol CalendarViewDelegate: class {
+public protocol CalendarViewDelegate: class {
   func didChangeMonth(to: Date)
   func willChangeMonth(to: Date)
   func didSelect(day: Date)
   func didDeselect(day: Date)
 }
 
-internal enum CalendarType {
+public enum CalendarType {
   case month
   case week
 }
 
 @IBDesignable
-final class CalendarView: UIView {
+public final class CalendarView: UIView {
   
   // MARK: - Structures
   
@@ -50,13 +50,14 @@ final class CalendarView: UIView {
   @IBInspectable public var calendarInsets: UIEdgeInsets = .zero
   @IBInspectable public var areSwipeGestureRecognizersActive = true
   
-  override var intrinsicContentSize: CGSize {
+  override public var intrinsicContentSize: CGSize {
     return CGSize(width: 343, height: 271)
   }
   
   private lazy var collectionView: UICollectionView = {
     let collectionView = UICollectionView(frame: bounds, collectionViewLayout: CalendarViewFlowLayout(frame: bounds, daysCount: 70))
-    collectionView.register(reuseIdentifying: DayCollectionViewCell.self)
+    let nibName = UINib(nibName: DayCollectionViewCell.reuseIdentifier, bundle: Bundle(for: CalendarView.self))
+    collectionView.register(nibName, forCellWithReuseIdentifier: DayCollectionViewCell.reuseIdentifier)
     collectionView.translatesAutoresizingMaskIntoConstraints = false
     collectionView.showsHorizontalScrollIndicator = false
     collectionView.backgroundColor = backgroundColor
@@ -109,7 +110,7 @@ final class CalendarView: UIView {
     setupView()
   }
   
-  override func layoutSubviews() {
+  public override func layoutSubviews() {
     super.layoutSubviews()
     
     let collectionViewLayout = CalendarViewFlowLayout(frame: bounds, daysCount: 70)

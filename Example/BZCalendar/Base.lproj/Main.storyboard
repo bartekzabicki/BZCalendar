@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jyh-ML-Zyd" customClass="CalendarView" customModule="Calendar" customModuleProvider="target">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jyh-ML-Zyd" customClass="CalendarView" customModule="BZCalendar">
                                 <rect key="frame" x="0.0" y="44" width="375" height="271"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -37,10 +37,16 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ja-VZ-rMx">
                                 <rect key="frame" x="50" y="587" width="39" height="30"/>
                                 <state key="normal" title="&lt;"/>
+                                <connections>
+                                    <action selector="leftButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="vap-tW-rej"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWe-GB-nr9">
                                 <rect key="frame" x="281" y="587" width="44" height="30"/>
                                 <state key="normal" title="&gt;"/>
+                                <connections>
+                                    <action selector="rightButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="u0a-o0-s5y"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z69-gq-wxN">
                                 <rect key="frame" x="166.5" y="596" width="42" height="21"/>
@@ -51,10 +57,16 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dN9-bu-J6K">
                                 <rect key="frame" x="50" y="557" width="39" height="30"/>
                                 <state key="normal" title="Week"/>
+                                <connections>
+                                    <action selector="weekButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ifg-B8-aLu"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Phg-dh-6cV">
                                 <rect key="frame" x="281" y="557" width="44" height="30"/>
                                 <state key="normal" title="Month"/>
+                                <connections>
+                                    <action selector="monthButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="065-5j-Fpo"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -81,6 +93,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dUt-uT-s9I"/>
                     </view>
+                    <connections>
+                        <outlet property="calendarView" destination="jyh-ML-Zyd" id="IOY-IE-Akd"/>
+                        <outlet property="monthLabel" destination="Z69-gq-wxN" id="K9J-Vk-1kE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
