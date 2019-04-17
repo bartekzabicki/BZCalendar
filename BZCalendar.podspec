@@ -21,22 +21,15 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/Bartek Zabicki/BZCalendar'
+  s.homepage         = 'https://github.com/bartekzabicki/BZCalendar'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Bartek Zabicki' => 'bartekzabicki@gmail.com' }
-  s.source           = { :git => 'https://github.com/Bartek Zabicki/BZCalendar.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/bartekzabicki/BZCalendar.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'BZCalendar/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'BZCalendar' => ['BZCalendar/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
 end

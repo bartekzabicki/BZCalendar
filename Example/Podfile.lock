@@ -1,0 +1,16 @@
+PODS:
+  - BZCalendar (0.1.0)
+
+DEPENDENCIES:
+  - BZCalendar (from `../`)
+
+EXTERNAL SOURCES:
+  BZCalendar:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BZCalendar: b821dd6b9eb3ff6037bd5be4ef2400bb83fafd53
+
+PODFILE CHECKSUM: 72d240c3845458ec53963c7e86453cde156dd04d
+
+COCOAPODS: 1.6.1
