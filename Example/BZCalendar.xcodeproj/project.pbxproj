@@ -171,6 +171,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 8CKLLLC9UE;
 						LastSwiftMigration = 0900;
 					};
 				};
@@ -398,6 +399,7 @@
 			baseConfigurationReference = AE1EEB28A9EC9D2301F8954F /* Pods-BZCalendar_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8CKLLLC9UE;
 				INFOPLIST_FILE = BZCalendar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -414,6 +416,7 @@
 			baseConfigurationReference = FF5BA42992C19707390DCF5A /* Pods-BZCalendar_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8CKLLLC9UE;
 				INFOPLIST_FILE = BZCalendar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -21,7 +21,7 @@ public enum CalendarType {
 }
 
 @IBDesignable
-public final class CalendarView: UIView {
+open class CalendarView: UIView {
   
   // MARK: - Structures
   
@@ -50,7 +50,7 @@ public final class CalendarView: UIView {
   @IBInspectable public var calendarInsets: UIEdgeInsets = .zero
   @IBInspectable public var areSwipeGestureRecognizersActive = true
   
-  override public var intrinsicContentSize: CGSize {
+  override open var intrinsicContentSize: CGSize {
     return CGSize(width: 343, height: 271)
   }
   
@@ -100,22 +100,22 @@ public final class CalendarView: UIView {
 
   // MARK: - Initialization
   
-  override init(frame: CGRect) {
+  public override init(frame: CGRect) {
     super.init(frame: frame)
     setupView()
   }
   
-  required init?(coder aDecoder: NSCoder) {
+  public required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     setupView()
   }
   
-  public override func layoutSubviews() {
+  open override func layoutSubviews() {
     super.layoutSubviews()
     
     let collectionViewLayout = CalendarViewFlowLayout(frame: bounds, daysCount: 70)
     collectionView.setCollectionViewLayout(collectionViewLayout, animated: false)
-//    adjustCollectionViewPosition()
+    adjustCollectionViewPosition()
   }
   
   // MARK: - Functions
@@ -156,7 +156,7 @@ public final class CalendarView: UIView {
   
   // MARK: - Private Functions
   
-  private func setupView() {
+  internal func setupView() {
     addWeekdays()
     addCollectionView()
     setupCalendar(for: Date())
@@ -293,9 +293,9 @@ public final class CalendarView: UIView {
 
 extension CalendarView: CalendarCollectionViewActionDelegate {
   func didChangeMonth(to date: Date) {
-//    currentDisplayedDate = date
-//    setupCalendar(for: currentDisplayedDate)
-//    delegate?.didChangeMonth(to: currentDisplayedDate)
+    currentDisplayedDate = date
+    setupCalendar(for: currentDisplayedDate)
+    delegate?.didChangeMonth(to: currentDisplayedDate)
   }
   
   func willChangeMonth(to date: Date) {
