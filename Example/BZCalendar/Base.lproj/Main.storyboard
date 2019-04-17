@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,10 +18,68 @@
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                    <view key="view" contentMode="scaleToFill" id="alL-OH-fTm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jyh-ML-Zyd" customClass="CalendarView" customModule="Calendar" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="375" height="271"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="249" constant="271" id="r9E-ll-MSI"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="r9E-ll-MSI"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ja-VZ-rMx">
+                                <rect key="frame" x="50" y="587" width="39" height="30"/>
+                                <state key="normal" title="&lt;"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWe-GB-nr9">
+                                <rect key="frame" x="281" y="587" width="44" height="30"/>
+                                <state key="normal" title="&gt;"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z69-gq-wxN">
+                                <rect key="frame" x="166.5" y="596" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dN9-bu-J6K">
+                                <rect key="frame" x="50" y="557" width="39" height="30"/>
+                                <state key="normal" title="Week"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Phg-dh-6cV">
+                                <rect key="frame" x="281" y="557" width="44" height="30"/>
+                                <state key="normal" title="Month"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="dUt-uT-s9I" firstAttribute="bottom" secondItem="7Ja-VZ-rMx" secondAttribute="bottom" constant="50" id="2FJ-bI-2El"/>
+                            <constraint firstItem="dN9-bu-J6K" firstAttribute="height" secondItem="7Ja-VZ-rMx" secondAttribute="height" id="5sM-R7-OsO"/>
+                            <constraint firstItem="Z69-gq-wxN" firstAttribute="centerX" secondItem="alL-OH-fTm" secondAttribute="centerX" id="8br-vH-gDV"/>
+                            <constraint firstItem="Z69-gq-wxN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7Ja-VZ-rMx" secondAttribute="trailing" id="D65-jt-DzQ"/>
+                            <constraint firstItem="7Ja-VZ-rMx" firstAttribute="leading" secondItem="dUt-uT-s9I" secondAttribute="leading" constant="50" id="Fnb-it-d6S"/>
+                            <constraint firstItem="dN9-bu-J6K" firstAttribute="trailing" secondItem="7Ja-VZ-rMx" secondAttribute="trailing" id="IHg-NV-wMb"/>
+                            <constraint firstItem="Phg-dh-6cV" firstAttribute="bottom" secondItem="DWe-GB-nr9" secondAttribute="top" id="MXq-41-iLu"/>
+                            <constraint firstItem="Phg-dh-6cV" firstAttribute="trailing" secondItem="DWe-GB-nr9" secondAttribute="trailing" id="NOK-QK-xgj"/>
+                            <constraint firstItem="dUt-uT-s9I" firstAttribute="trailing" secondItem="DWe-GB-nr9" secondAttribute="trailing" constant="50" id="QSd-Mf-JHu"/>
+                            <constraint firstItem="dUt-uT-s9I" firstAttribute="bottom" secondItem="DWe-GB-nr9" secondAttribute="bottom" constant="50" id="VfV-5Z-LKC"/>
+                            <constraint firstItem="dN9-bu-J6K" firstAttribute="leading" secondItem="7Ja-VZ-rMx" secondAttribute="leading" id="Z5P-hg-JHR"/>
+                            <constraint firstItem="dUt-uT-s9I" firstAttribute="bottom" secondItem="Z69-gq-wxN" secondAttribute="bottom" constant="50" id="aXL-eG-V49"/>
+                            <constraint firstItem="Phg-dh-6cV" firstAttribute="height" secondItem="DWe-GB-nr9" secondAttribute="height" id="bqj-WT-sDO"/>
+                            <constraint firstItem="Phg-dh-6cV" firstAttribute="leading" secondItem="DWe-GB-nr9" secondAttribute="leading" id="c9d-Om-fpy"/>
+                            <constraint firstItem="DWe-GB-nr9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Z69-gq-wxN" secondAttribute="trailing" id="chs-u5-jwG"/>
+                            <constraint firstItem="jyh-ML-Zyd" firstAttribute="top" secondItem="dUt-uT-s9I" secondAttribute="top" id="ebE-7g-bDq"/>
+                            <constraint firstItem="dUt-uT-s9I" firstAttribute="trailing" secondItem="jyh-ML-Zyd" secondAttribute="trailing" id="esj-4a-UIq"/>
+                            <constraint firstItem="jyh-ML-Zyd" firstAttribute="leading" secondItem="dUt-uT-s9I" secondAttribute="leading" id="j3i-3E-5SR"/>
+                            <constraint firstItem="dN9-bu-J6K" firstAttribute="bottom" secondItem="7Ja-VZ-rMx" secondAttribute="top" id="zor-cH-ldm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dUt-uT-s9I"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

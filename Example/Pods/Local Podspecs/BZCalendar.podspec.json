@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "summary": "A short description of BZCalendar.",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/Bartek Zabicki/BZCalendar",
+  "homepage": "https://github.com/bartekzabicki/BZCalendar",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,11 +12,14 @@
     "Bartek Zabicki": "bartekzabicki@gmail.com"
   },
   "source": {
-    "git": "https://github.com/Bartek Zabicki/BZCalendar.git",
+    "git": "https://github.com/bartekzabicki/BZCalendar.git",
     "tag": "0.1.0"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "BZCalendar/Classes/**/*"
+  "source_files": "BZCalendar/Classes/**/*",
+  "pod_target_xcconfig": {
+    "SWIFT_VERSION": "5.0"
+  }
 }

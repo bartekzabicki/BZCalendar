@@ -15,6 +15,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		8A0DECCD8521A5F16F578EEB /* Pods_BZCalendar_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3B3F0F0DC91C28A0ABCE84A /* Pods_BZCalendar_Tests.framework */; };
+		CC3752E7226787BB002AF7CF /* View in Resources */ = {isa = PBXBuildFile; fileRef = CC3752E6226787BB002AF7CF /* View */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,10 +42,11 @@
 		607FACE51AFB9204008FA782 /* BZCalendar_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BZCalendar_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		96E0ADB91B796D616CF49517 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		96E0ADB91B796D616CF49517 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		AE1EEB28A9EC9D2301F8954F /* Pods-BZCalendar_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BZCalendar_Example.debug.xcconfig"; path = "Target Support Files/Pods-BZCalendar_Example/Pods-BZCalendar_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		DC4012EAF10C75BDABEA0710 /* BZCalendar.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = BZCalendar.podspec; path = ../BZCalendar.podspec; sourceTree = "<group>"; };
-		DDB193DD4CEBAA5C809F33EF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		CC3752E6226787BB002AF7CF /* View */ = {isa = PBXFileReference; lastKnownFileType = folder; path = View; sourceTree = "<group>"; };
+		DC4012EAF10C75BDABEA0710 /* BZCalendar.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BZCalendar.podspec; path = ../BZCalendar.podspec; sourceTree = "<group>"; };
+		DDB193DD4CEBAA5C809F33EF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		E3B3F0F0DC91C28A0ABCE84A /* Pods_BZCalendar_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BZCalendar_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF5BA42992C19707390DCF5A /* Pods-BZCalendar_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BZCalendar_Example.release.xcconfig"; path = "Target Support Files/Pods-BZCalendar_Example/Pods-BZCalendar_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,7 +79,6 @@
 				1C4828FCCBCC6D9CF57BF8F7 /* Pods-BZCalendar_Tests.debug.xcconfig */,
 				3701C12F329BA0BDD460DD05 /* Pods-BZCalendar_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -105,6 +106,7 @@
 		607FACD21AFB9204008FA782 /* Example for BZCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				CC3752E6226787BB002AF7CF /* View */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -227,6 +229,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -249,6 +252,7 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				CC3752E7226787BB002AF7CF /* View in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
