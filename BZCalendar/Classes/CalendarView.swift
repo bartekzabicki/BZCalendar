@@ -49,6 +49,7 @@ open class CalendarView: UIView {
   
   @IBInspectable public var calendarInsets: UIEdgeInsets = .zero
   @IBInspectable public var areSwipeGestureRecognizersActive = true
+  @IBInspectable public var isSelectingDaysActive = true
   
   override open var intrinsicContentSize: CGSize {
     return CGSize(width: 343, height: 271)
@@ -137,6 +138,15 @@ open class CalendarView: UIView {
   public func select(date: Date) {
     guard !selectedDates.contains(date) else { return }
     selectedDates.append(date)
+  }
+  
+  public func select(dates: [Date]) {
+    selectedDates.forEach ({ [weak self] date in
+      selectedDates.removeAll(where: { $0 == date })
+      self?.delegate?.didDeselect(day: date)
+    })
+    selectedDates = dates
+    reloadData()
   }
   
   public func deselect(date: Date) {
@@ -303,6 +313,10 @@ extension CalendarView: CalendarCollectionViewActionDelegate {
   }
   
   func didTapOn(date: Date, indexPath: IndexPath) {
+    guard isSelectingDaysActive else {
+      select(dates: [date])
+      return
+    }
     let isSelected = collectionViewDataSource
       .request
       .selectedDates
