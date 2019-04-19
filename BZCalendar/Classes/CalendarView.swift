@@ -9,17 +9,24 @@
 import UIKit
 
 public protocol CalendarViewDelegate: class {
-  func didChangeMonth(to: Date)
-  func willChangeMonth(to: Date)
+  func didChangeDate(to: Date)
+  func willChangeDate(to: Date)
   func didSelect(day: Date)
   func didDeselect(day: Date)
-  func didChangeWeek(to: Date)
-  func willChangeWeek(to: Date)
 }
 
 public enum CalendarType {
   case month
   case week
+  
+  var calendarComponent: Calendar.Component {
+    switch self {
+    case .month:
+      return .month
+    case .week:
+      return .weekOfYear
+    }
+  }
 }
 
 @IBDesignable
@@ -85,7 +92,7 @@ open class CalendarView: UIView {
   private var collectionViewDataSource: CalendarCollectionViewDataSource!
   private var collectionViewDelegate: CalendarCollectionViewDelegate!
   private var currentDisplayedDate = Date()
-  private var monthsOnSides: Int = 3 {
+  private var elementsOnSides: Int = 3 {
     didSet {
       setupCalendar(for: currentDisplayedDate)
     }
@@ -117,18 +124,18 @@ open class CalendarView: UIView {
   
   // MARK: - Functions
   
-  public func changeToPreviousMonth() {
-    displayPreviousMonth()
+  public func changeToPrevious() {
+    displayPreviousElement(calendarType: calendarType)
   }
   
-  public func changeToNextMonth() {
-    displayNextMonth()
+  public func changeToNext() {
+    displayNextElement(calendarType: calendarType)
   }
   
   public func changeTo(date: Date) {
     currentDisplayedDate = date
     setupCalendar(for: currentDisplayedDate)
-    delegate?.didChangeMonth(to: currentDisplayedDate)
+    delegate?.didChangeDate(to: currentDisplayedDate)
   }
   
   public func select(date: Date) {
@@ -204,19 +211,13 @@ open class CalendarView: UIView {
   
   
   private func adjustCollectionViewPosition() {
-    collectionView.contentOffset.x = collectionView.bounds.width * CGFloat(monthsOnSides)
+    collectionView.contentOffset.x = collectionView.bounds.width * CGFloat(elementsOnSides)
   }
   
   private func preparedCollectionViewDataRequest(for date: Date, type: CalendarType) -> CalendarCollectionViewDataRequest {
-    let calendarComponent: Calendar.Component
-    switch type {
-    case .month:
-      calendarComponent = .month
-    case .week:
-      calendarComponent = .weekOfYear
-    }
+    let calendarComponent = type.calendarComponent
     var elements: [Element] = []
-    for elementIndex in 1...monthsOnSides {
+    for elementIndex in 1...elementsOnSides {
       let previousElementDate = calendar.date(byAdding: calendarComponent, value: -elementIndex, to: date)!
       let nextElementDate = calendar.date(byAdding: calendarComponent, value: elementIndex, to: date)!
       
@@ -303,16 +304,16 @@ open class CalendarView: UIView {
     return symbols
   }
   
-  private func displayNextMonth() {
-    currentDisplayedDate = calendar.date(byAdding: .month, value: 1, to: currentDisplayedDate)!
+  private func displayNextElement(calendarType: CalendarType) {
+    currentDisplayedDate = calendar.date(byAdding: calendarType.calendarComponent, value: 1, to: currentDisplayedDate)!
     setupCalendar(for: currentDisplayedDate)
-    delegate?.didChangeMonth(to: currentDisplayedDate)
+    delegate?.didChangeDate(to: currentDisplayedDate)
   }
   
-  private func displayPreviousMonth() {
-    currentDisplayedDate = calendar.date(byAdding: .month, value: -1, to: currentDisplayedDate)!
+  private func displayPreviousElement(calendarType: CalendarType) {
+    currentDisplayedDate = calendar.date(byAdding: calendarType.calendarComponent, value: -1, to: currentDisplayedDate)!
     setupCalendar(for: currentDisplayedDate)
-    delegate?.didChangeMonth(to: currentDisplayedDate)
+    delegate?.didChangeDate(to: currentDisplayedDate)
   }
   
   private func transformToDates(days: [Int], for monthDate: Date) -> [Date] {
@@ -325,14 +326,14 @@ open class CalendarView: UIView {
 }
 
 extension CalendarView: CalendarCollectionViewActionDelegate {
-  func didChangeMonth(to date: Date) {
+  func didChangeDate(to date: Date) {
     currentDisplayedDate = date
     setupCalendar(for: currentDisplayedDate)
-    delegate?.didChangeMonth(to: currentDisplayedDate)
+    delegate?.didChangeDate(to: currentDisplayedDate)
   }
   
-  func willChangeMonth(to date: Date) {
-    delegate?.willChangeMonth(to: date)
+  func willChangeDate(to date: Date) {
+    delegate?.willChangeDate(to: date)
   }
   
   func didTapOn(date: Date, indexPath: IndexPath) {
@@ -353,16 +354,6 @@ extension CalendarView: CalendarCollectionViewActionDelegate {
       reloadData()
       delegate?.didSelect(day: date)
     }
-  }
-  
-  func didChangeWeek(to date: Date) {
-    currentDisplayedDate = date
-    setupCalendar(for: currentDisplayedDate)
-    delegate?.didChangeWeek(to: currentDisplayedDate)
-  }
-  
-  func willChangeWeek(to date: Date) {
-    delegate?.willChangeWeek(to: date)
   }
   
 }

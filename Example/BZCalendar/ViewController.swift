@@ -32,11 +32,11 @@ class ViewController: UIViewController {
   // MARK: - Actions
   
   @IBAction func rightButton(_ sender: UIButton) {
-    calendarView.changeToNextMonth()
+    calendarView.changeToNext()
   }
   
   @IBAction func leftButton(_ sender: UIButton) {
-    calendarView.changeToPreviousMonth()
+    calendarView.changeToPrevious()
   }
   
   @IBAction func weekButton(_ sender: UIButton) {
@@ -51,14 +51,14 @@ class ViewController: UIViewController {
 // MARK: - CalendarViewDelegate
 
 extension ViewController: CalendarViewDelegate {
-  func didChangeMonth(to date: Date) {
+  func didChangeDate(to date: Date) {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "MMMM yyyy"
     title = dateFormatter.string(from: date)
     self.monthLabel.text = self.monthFormatter.string(from: date)
   }
   
-  func willChangeMonth(to date: Date) {
+  func willChangeDate(to date: Date) {
     DispatchQueue.main.async {
       self.monthLabel.text = self.monthFormatter.string(from: date)
     }
@@ -70,19 +70,6 @@ extension ViewController: CalendarViewDelegate {
   
   func didDeselect(day: Date) {
     Log.s("Deselect day: \(day)")
-  }
-  
-  func didChangeWeek(to date: Date) {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "MMMM yyyy"
-    title = dateFormatter.string(from: date)
-    self.monthLabel.text = self.monthFormatter.string(from: date)
-  }
-  
-  func willChangeWeek(to date: Date) {
-    DispatchQueue.main.async {
-      self.monthLabel.text = self.monthFormatter.string(from: date)
-    }
   }
   
 }

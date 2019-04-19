@@ -103,10 +103,8 @@ final class CalendarCollectionViewDataSource: NSObject, UICollectionViewDataSour
 
 protocol CalendarCollectionViewActionDelegate: class {
   func didTapOn(date: Date, indexPath: IndexPath)
-  func didChangeMonth(to: Date)
-  func willChangeMonth(to: Date)
-  func didChangeWeek(to: Date)
-  func willChangeWeek(to: Date)
+  func didChangeDate(to: Date)
+  func willChangeDate(to: Date)
 }
 
 final class CalendarCollectionViewDelegate: NSObject, UICollectionViewDelegate {
@@ -115,16 +113,16 @@ final class CalendarCollectionViewDelegate: NSObject, UICollectionViewDelegate {
   
   let request: CalendarCollectionViewDataRequest
   weak var delegate: CalendarCollectionViewActionDelegate?
-  var currentMonthIndex: Int!
-  var oldMonthIndex: Int!
+  var currentElementIndex: Int!
+  var oldElementIndex: Int!
   
   // MARK: - Initialization
   
   init(request: CalendarCollectionViewDataRequest, delegate: CalendarCollectionViewActionDelegate) {
     self.request = request
     self.delegate = delegate
-    currentMonthIndex = request.elements.count/2
-    oldMonthIndex = request.elements.count/2
+    currentElementIndex = request.elements.count/2
+    oldElementIndex = request.elements.count/2
   }
   
   // MARK: - UICollectionViewDelegate
@@ -136,7 +134,7 @@ final class CalendarCollectionViewDelegate: NSObject, UICollectionViewDelegate {
   
   func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
     guard let collectionView = scrollView as? UICollectionView else { return }
-    currentMonthIndex = monthIndexFor(contentOffset: scrollView.contentOffset, in: collectionView)
+    currentElementIndex = elementIndexFor(contentOffset: scrollView.contentOffset, in: collectionView)
   }
   
   func scrollViewWillEndDragging(_ scrollView: UIScrollView,
@@ -149,12 +147,12 @@ final class CalendarCollectionViewDelegate: NSObject, UICollectionViewDelegate {
   }
   
   func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    checkIfMonthDidChange(in: scrollView)
+    checkIfElementDidChange(in: scrollView)
   }
   
   func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
     if !decelerate {
-      checkIfMonthDidChange(in: scrollView)
+      checkIfElementDidChange(in: scrollView)
     }
   }
   
@@ -165,28 +163,13 @@ final class CalendarCollectionViewDelegate: NSObject, UICollectionViewDelegate {
     let maxCollectionViewContent = CGFloat(request.elements.count) * collectionView.bounds.width
     
     if scrollView.contentOffset.x < -blankOffset {
-      switch request.calendarType {
-      case .month:
-        callDelegate(delegateMethod: delegate?.didChangeMonth(to: dateFor(index: 0)), index: 0)
-      case .week:
-        callDelegate(delegateMethod: delegate?.didChangeWeek(to: dateFor(index: 0)), index: 0)
-      }
+      callDelegate(delegateMethod: delegate?.didChangeDate(to: dateFor(index: 0)), index: 0)
     } else if scrollView.contentOffset.x > maxCollectionViewContent {
       let index = request.elements.count - 1
-      switch request.calendarType {
-      case .month:
-        callDelegate(delegateMethod: delegate?.didChangeMonth(to: dateFor(index: index)), index: index)
-      case .week:
-        callDelegate(delegateMethod: delegate?.didChangeWeek(to: dateFor(index: index)), index: index)
-      }
+      callDelegate(delegateMethod: delegate?.didChangeDate(to: dateFor(index: index)), index: index)
     } else {
-      let index = monthIndexFor(contentOffset: scrollView.contentOffset, in: collectionView)
-      switch request.calendarType {
-      case .month:
-        callDelegate(delegateMethod: delegate?.willChangeMonth(to: dateFor(index: index)), index: index)
-      case .week:
-        callDelegate(delegateMethod: delegate?.willChangeWeek(to: dateFor(index: index)), index: index)
-      }
+      let index = elementIndexFor(contentOffset: scrollView.contentOffset, in: collectionView)
+      callDelegate(delegateMethod: delegate?.willChangeDate(to: dateFor(index: index)), index: index)
     }
   }
   
@@ -194,41 +177,35 @@ final class CalendarCollectionViewDelegate: NSObject, UICollectionViewDelegate {
   
   private func calculatedMonthPosition(in collectionView: UICollectionView, on contentOffset: CGPoint, velocity: CGPoint) -> CGFloat {
     guard let flowLayout = collectionView.collectionViewLayout as? CalendarViewFlowLayout else { return 0 }
-    let monthWidth = (flowLayout.itemSize.width) * 7
-    let months = collectionView.contentSize.width/monthWidth
+    let elementWidth = (flowLayout.itemSize.width) * 7
+    let elements = collectionView.contentSize.width/elementWidth
     
-    var currentMonthIndex = monthIndexFor(contentOffset: contentOffset, in: collectionView)
+    var currentElementIndex = elementIndexFor(contentOffset: contentOffset, in: collectionView)
     let velocityCriticalPoint: CGFloat = 0
     
-    let isTheSameMonth = currentMonthIndex == self.currentMonthIndex
-    if isTheSameMonth {
-      if velocity.x > velocityCriticalPoint, currentMonthIndex + 1 < Int(months) {
-        currentMonthIndex += 1
-      } else if velocity.x < -velocityCriticalPoint, currentMonthIndex - 1 >= 0 {
-        currentMonthIndex -= 1
+    let isTheSameElement = currentElementIndex == self.currentElementIndex
+    if isTheSameElement {
+      if velocity.x > velocityCriticalPoint, currentElementIndex + 1 < Int(elements) {
+        currentElementIndex += 1
+      } else if velocity.x < -velocityCriticalPoint, currentElementIndex - 1 >= 0 {
+        currentElementIndex -= 1
       }
     }
-    self.currentMonthIndex = currentMonthIndex
+    self.currentElementIndex = currentElementIndex
     
-    return (CGFloat(currentMonthIndex) * monthWidth)
+    return (CGFloat(currentElementIndex) * elementWidth)
   }
   
-  private func monthIndexFor(contentOffset: CGPoint, in collectionView: UICollectionView) -> Int {
+  private func elementIndexFor(contentOffset: CGPoint, in collectionView: UICollectionView) -> Int {
     guard let flowLayout = collectionView.collectionViewLayout as? CalendarViewFlowLayout else { return 0 }
     let monthWidth = (flowLayout.itemSize.width + flowLayout.minimumLineSpacing) * 7
     return Int(round(contentOffset.x / monthWidth))
   }
   
-  private func checkIfMonthDidChange(in scrollView: UIScrollView) {
-    if currentMonthIndex != oldMonthIndex {
-      switch request.calendarType {
-      case .month:
-        callDelegate(delegateMethod: delegate?.didChangeMonth(to: dateFor(index: currentMonthIndex)), index: currentMonthIndex)
-        restoreDefaultIndexes()
-      case .week:
-        callDelegate(delegateMethod: delegate?.didChangeWeek(to: dateFor(index: currentMonthIndex)), index: currentMonthIndex)
-        restoreDefaultIndexes()
-      }
+  private func checkIfElementDidChange(in scrollView: UIScrollView) {
+    if currentElementIndex != oldElementIndex {
+      callDelegate(delegateMethod: delegate?.didChangeDate(to: dateFor(index: currentElementIndex)), index: currentElementIndex)
+      restoreDefaultIndexes()
     }
   }
   
@@ -236,7 +213,7 @@ final class CalendarCollectionViewDelegate: NSObject, UICollectionViewDelegate {
     if request.elements.indices.contains(index) {
       return request.elements[index].currentMonthDays.first!
     } else {
-      if currentMonthIndex < 0 {
+      if currentElementIndex < 0 {
         return request.elements.first!.currentMonthDays.first!
       } else {
         return request.elements.last!.currentMonthDays.first!
@@ -257,8 +234,8 @@ final class CalendarCollectionViewDelegate: NSObject, UICollectionViewDelegate {
   }
   
   private func restoreDefaultIndexes() {
-    currentMonthIndex = request.elements.count/2
-    oldMonthIndex = request.elements.count/2
+    currentElementIndex = request.elements.count/2
+    oldElementIndex = request.elements.count/2
   }
   
 }
