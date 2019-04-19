@@ -9,7 +9,7 @@
 import Unicorns
 
 internal struct CalendarCollectionViewDataRequest {
-  let months: [CalendarView.Month]
+  let elements: [CalendarView.Element]
   let selectedDates: [Date]
   let calendar: Calendar
   let calendarType: CalendarType
@@ -42,16 +42,16 @@ final class CalendarCollectionViewDataSource: NSObject, UICollectionViewDataSour
   // MARK: - UICollectionViewDataSource
   
   func numberOfSections(in collectionView: UICollectionView) -> Int {
-    return request.months.count
+    return request.elements.count
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return request.months[section].allDays.count
+    return request.elements[section].allDays.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusable(cell: DayCollectionViewCell.self, for: indexPath)
-    let date = request.months[indexPath.section].allDays[indexPath.row]
+    let date = request.elements[indexPath.section].allDays[indexPath.row]
     let dayNumber = dayFormatter.string(from: date)
     let isSelected = request
       .selectedDates
@@ -89,7 +89,7 @@ final class CalendarCollectionViewDataSource: NSObject, UICollectionViewDataSour
   // MAKR: - Private Functions
   
   private func dayState(for indexPath: IndexPath) -> DayCollectionViewCell.MonthDayType {
-    let month = request.months[indexPath.section]
+    let month = request.elements[indexPath.section]
     if indexPath.row < month.previousMonthDays.count {
       return .previousMonth
     } else if month.previousMonthDays.count + month.currentMonthDays.count <= indexPath.row {
@@ -123,14 +123,14 @@ final class CalendarCollectionViewDelegate: NSObject, UICollectionViewDelegate {
   init(request: CalendarCollectionViewDataRequest, delegate: CalendarCollectionViewActionDelegate) {
     self.request = request
     self.delegate = delegate
-    currentMonthIndex = request.months.count/2
-    oldMonthIndex = request.months.count/2
+    currentMonthIndex = request.elements.count/2
+    oldMonthIndex = request.elements.count/2
   }
   
   // MARK: - UICollectionViewDelegate
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    let day = request.months[indexPath.section].allDays[indexPath.row]
+    let day = request.elements[indexPath.section].allDays[indexPath.row]
     delegate?.didTapOn(date: day, indexPath: indexPath)
   }
   
@@ -162,7 +162,7 @@ final class CalendarCollectionViewDelegate: NSObject, UICollectionViewDelegate {
     guard let collectionView = scrollView as? UICollectionView else { return }
     
     let blankOffset: CGFloat = 100
-    let maxCollectionViewContent = CGFloat(request.months.count) * collectionView.bounds.width
+    let maxCollectionViewContent = CGFloat(request.elements.count) * collectionView.bounds.width
     
     if scrollView.contentOffset.x < -blankOffset {
       switch request.calendarType {
@@ -172,7 +172,7 @@ final class CalendarCollectionViewDelegate: NSObject, UICollectionViewDelegate {
         callDelegate(delegateMethod: delegate?.didChangeWeek(to: dateFor(index: 0)), index: 0)
       }
     } else if scrollView.contentOffset.x > maxCollectionViewContent {
-      let index = request.months.count - 1
+      let index = request.elements.count - 1
       switch request.calendarType {
       case .month:
         callDelegate(delegateMethod: delegate?.didChangeMonth(to: dateFor(index: index)), index: index)
@@ -227,24 +227,25 @@ final class CalendarCollectionViewDelegate: NSObject, UICollectionViewDelegate {
         restoreDefaultIndexes()
       case .week:
         callDelegate(delegateMethod: delegate?.didChangeWeek(to: dateFor(index: currentMonthIndex)), index: currentMonthIndex)
+        restoreDefaultIndexes()
       }
     }
   }
   
   private func dateFor(index: Int) -> Date {
-    if request.months.indices.contains(index) {
-      return request.months[index].currentMonthDays.first!
+    if request.elements.indices.contains(index) {
+      return request.elements[index].currentMonthDays.first!
     } else {
       if currentMonthIndex < 0 {
-        return request.months.first!.currentMonthDays.first!
+        return request.elements.first!.currentMonthDays.first!
       } else {
-        return request.months.last!.currentMonthDays.first!
+        return request.elements.last!.currentMonthDays.first!
       }
     }
   }
   
   private func callDelegate(delegateMethod: @autoclosure () -> Void?, index: Int) {
-    if request.months.indices.contains(index) {
+    if request.elements.indices.contains(index) {
       delegateMethod()
     } else {
       if index < 0 {
@@ -256,8 +257,8 @@ final class CalendarCollectionViewDelegate: NSObject, UICollectionViewDelegate {
   }
   
   private func restoreDefaultIndexes() {
-    currentMonthIndex = request.months.count/2
-    oldMonthIndex = request.months.count/2
+    currentMonthIndex = request.elements.count/2
+    oldMonthIndex = request.elements.count/2
   }
   
 }

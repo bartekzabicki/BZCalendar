@@ -17,11 +17,17 @@ final class CalendarViewFlowLayout: UICollectionViewFlowLayout {
   private var superViewFrame: CGRect = .zero
   private(set) var layoutType: CalendarType = .month
   
+  private var contentSize: CGSize = .zero
+  override var collectionViewContentSize: CGSize {
+    return contentSize
+  }
+  
   // MARK: - Initialization
   
-  init(frame: CGRect) {
+  init(frame: CGRect, layoutType: CalendarType) {
     super.init()
     superViewFrame = frame
+    self.layoutType = layoutType
     setup(frame: frame)
   }
   
@@ -83,6 +89,7 @@ final class CalendarViewFlowLayout: UICollectionViewFlowLayout {
   }
   
   private func setupMonthLayout(in collectionView: UICollectionView) {
+    contentSize = .zero
     cache = [UICollectionViewLayoutAttributes]()
     let itemDimension = (superViewFrame.width - (6 * minimumInteritemSpacing))/7
     itemSize = CGSize(width: itemDimension, height: itemDimension)
@@ -95,12 +102,15 @@ final class CalendarViewFlowLayout: UICollectionViewFlowLayout {
         let y = CGFloat(row / 7) * itemSize.height
         let frame = CGRect(origin: CGPoint(x: x, y: y), size: itemSize)
         attributes.frame = frame
+        contentSize.width = max(contentSize.width, frame.maxX)
+        contentSize.height = max(contentSize.height, frame.maxY)
         cache.append(attributes)
       }
     }
   }
   
   private func setupWeekLayout(in collectionView: UICollectionView) {
+    contentSize = .zero
     cache = [UICollectionViewLayoutAttributes]()
     let itemDimension = (superViewFrame.width - (6 * minimumInteritemSpacing))/7
     itemSize = CGSize(width: itemDimension, height: itemDimension)
@@ -113,6 +123,8 @@ final class CalendarViewFlowLayout: UICollectionViewFlowLayout {
         let y: CGFloat = 0
         let frame = CGRect(origin: CGPoint(x: x, y: y), size: itemSize)
         attributes.frame = frame
+        contentSize.width = max(contentSize.width, frame.maxX)
+        contentSize.height = max(contentSize.height, frame.maxY)
         cache.append(attributes)
         index += 1
       }

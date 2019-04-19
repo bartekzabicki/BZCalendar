@@ -13,6 +13,8 @@ public protocol CalendarViewDelegate: class {
   func willChangeMonth(to: Date)
   func didSelect(day: Date)
   func didDeselect(day: Date)
+  func didChangeWeek(to: Date)
+  func willChangeWeek(to: Date)
 }
 
 public enum CalendarType {
@@ -25,21 +27,14 @@ open class CalendarView: UIView {
   
   // MARK: - Structures
   
-  struct Month {
+  struct Element {
     let previousMonthDays: [Date]
     let currentMonthDays: [Date]
     let nextMonthDays: [Date]
-    var weeks: [Week] {
-      return allDays.chunked(into: 7).compactMap({ Week(days: $0)} )
-    }
     
     var allDays: [Date] {
       return [previousMonthDays, currentMonthDays, nextMonthDays].flatMap {$0}
     }
-  }
-  
-  struct Week {
-    let days: [Date]
   }
   
   // MARK: - Properties
@@ -56,7 +51,8 @@ open class CalendarView: UIView {
   }
   
   private lazy var collectionView: UICollectionView = {
-    let collectionView = UICollectionView(frame: bounds, collectionViewLayout: CalendarViewFlowLayout(frame: bounds))
+    let collectionView = UICollectionView(frame: bounds,
+                                          collectionViewLayout: CalendarViewFlowLayout(frame: bounds, layoutType: calendarType))
     let nibName = UINib(nibName: DayCollectionViewCell.reuseIdentifier, bundle: Bundle(for: CalendarView.self))
     collectionView.register(nibName, forCellWithReuseIdentifier: DayCollectionViewCell.reuseIdentifier)
     collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -114,7 +110,7 @@ open class CalendarView: UIView {
   open override func layoutSubviews() {
     super.layoutSubviews()
     
-    let collectionViewLayout = CalendarViewFlowLayout(frame: bounds)
+    let collectionViewLayout = CalendarViewFlowLayout(frame: bounds, layoutType: calendarType)
     collectionView.setCollectionViewLayout(collectionViewLayout, animated: false)
     adjustCollectionViewPosition()
   }
@@ -159,9 +155,9 @@ open class CalendarView: UIView {
   
   public func changeCalendarType(to calendarType: CalendarType) {
     self.calendarType = calendarType
+    setupCalendar(for: currentDisplayedDate)
     collectionViewLayout.changeType(to: calendarType)
     collectionView.collectionViewLayout.invalidateLayout()
-    collectionView.setCollectionViewLayout(collectionViewLayout, animated: true)
   }
   
   // MARK: - Private Functions
@@ -198,7 +194,7 @@ open class CalendarView: UIView {
   }
   
   private func setupCalendar(for date: Date) {
-    let request = preparedCollectionViewDataRequest(for: date)
+    let request = preparedCollectionViewDataRequest(for: date, type: calendarType)
     collectionViewDataSource = CalendarCollectionViewDataSource(request: request)
     collectionViewDelegate = CalendarCollectionViewDelegate(request: request, delegate: self)
     collectionView.dataSource = collectionViewDataSource
@@ -206,29 +202,43 @@ open class CalendarView: UIView {
     adjustCollectionViewPosition()
   }
   
+  
   private func adjustCollectionViewPosition() {
-    switch calendarType {
+    collectionView.contentOffset.x = collectionView.bounds.width * CGFloat(monthsOnSides)
+  }
+  
+  private func preparedCollectionViewDataRequest(for date: Date, type: CalendarType) -> CalendarCollectionViewDataRequest {
+    let calendarComponent: Calendar.Component
+    switch type {
     case .month:
-      collectionView.contentOffset.x = collectionView.bounds.width * CGFloat(monthsOnSides)
+      calendarComponent = .month
     case .week:
-      collectionView.scrollToItem(at: IndexPath(row: 8, section: monthsOnSides), at: .left, animated: true)
+      calendarComponent = .weekOfYear
     }
+    var elements: [Element] = []
+    for elementIndex in 1...monthsOnSides {
+      let previousElementDate = calendar.date(byAdding: calendarComponent, value: -elementIndex, to: date)!
+      let nextElementDate = calendar.date(byAdding: calendarComponent, value: elementIndex, to: date)!
+      
+      switch type {
+      case .month:
+        elements.insert(preparedMonth(for: previousElementDate), at: 0)
+        elements.append(preparedMonth(for: nextElementDate))
+      case .week:
+        elements.insert(preparedWeek(for: previousElementDate), at: 0)
+        elements.append(preparedWeek(for: nextElementDate))
+      }
+    }
+    switch type {
+    case .month:
+      elements.insert(preparedMonth(for: date), at: elements.count/2)
+    case .week:
+      elements.insert(preparedWeek(for: date), at: elements.count/2)
+    }
+    return .init(elements: elements, selectedDates: selectedDates, calendar: calendar, calendarType: calendarType)
   }
   
-  private func preparedCollectionViewDataRequest(for date: Date) -> CalendarCollectionViewDataRequest {
-    var months: [Month] = []
-    for monthIndex in 1...monthsOnSides {
-      let previousMonthDate = calendar.date(byAdding: .month, value: -monthIndex, to: date)!
-      let nextMonthDate = calendar.date(byAdding: .month, value: monthIndex, to: date)!
-      months.insert(preparedMonth(for: previousMonthDate), at: 0)
-      months.append(preparedMonth(for: nextMonthDate))
-    }
-    months.insert(preparedMonth(for: date), at: months.count/2)
-    return .init(months: months, selectedDates: selectedDates, calendar: calendar, calendarType: calendarType)
-  }
-  
-  private func preparedMonth(for date: Date) -> Month {
-    
+  private func preparedMonth(for date: Date) -> Element {
     let previousMonthDate = calendar.date(byAdding: .month, value: -1, to: date)!
     let nextMonthDate = calendar.date(byAdding: .month, value: 1, to: date)!
     
@@ -251,16 +261,27 @@ open class CalendarView: UIView {
     
     let nextMonthDays = transformToDates(days: Array(1...nextMonthDaysCount), for: nextMonthDate)
     
-    return Month(previousMonthDays: previousMonthDays,
-                 currentMonthDays: currentMonthDays,
-                 nextMonthDays: nextMonthDays)
+    return Element(previousMonthDays: previousMonthDays,
+                   currentMonthDays: currentMonthDays,
+                   nextMonthDays: nextMonthDays)
   }
   
-  private func preparedWeek(for date: Date) -> Week {
-    let currentWeekDaysFirst =  calendar.range(of: .day, in: .weekOfMonth, for: date)!.first!
-    let currentWeekDaysCount =  calendar.range(of: .day, in: .weekOfMonth, for: date)!.count
-    let currentWeekDays = transformToDates(days: Array(currentWeekDaysFirst...currentWeekDaysCount), for: date)
-    return Week(days: currentWeekDays)
+  private func preparedWeek(for date: Date) -> Element {
+    let weekOfTheYear = calendar.component(.weekOfYear, from: date)
+    let yearForWeekOfYear = calendar.component(.yearForWeekOfYear, from: date)
+    let firstDateOfWeek = calendar.date(from: DateComponents(calendar: calendar,
+                                                             weekOfYear: weekOfTheYear,
+                                                             yearForWeekOfYear: yearForWeekOfYear))!
+    let weekDaysCount = calendar.weekdaySymbols.count
+    var days = Array.init(repeating: firstDateOfWeek, count: weekDaysCount)
+      .enumerated()
+      .compactMap({ calendar.date(byAdding: .day, value: $0.offset, to: firstDateOfWeek)})
+    let previousMonthDays = days.filter({ calendar.compare($0, to: date, toGranularity: .month) == .orderedAscending})
+    let nextMonthDays = days.filter({ calendar.compare($0, to: date, toGranularity: .month) == .orderedDescending})
+    days = days.filter({ !previousMonthDays.contains($0) && !nextMonthDays.contains($0)})
+    return Element(previousMonthDays: previousMonthDays,
+                   currentMonthDays: days,
+                   nextMonthDays: nextMonthDays)
   }
   
   func weekday(of date: Date, weekStartSunday: Bool) -> Int {
@@ -334,12 +355,14 @@ extension CalendarView: CalendarCollectionViewActionDelegate {
     }
   }
   
-  func didChangeWeek(to: Date) {
-    
+  func didChangeWeek(to date: Date) {
+    currentDisplayedDate = date
+    setupCalendar(for: currentDisplayedDate)
+    delegate?.didChangeWeek(to: currentDisplayedDate)
   }
   
-  func willChangeWeek(to: Date) {
-    
+  func willChangeWeek(to date: Date) {
+    delegate?.willChangeWeek(to: date)
   }
   
 }

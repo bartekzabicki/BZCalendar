@@ -72,4 +72,17 @@ extension ViewController: CalendarViewDelegate {
     Log.s("Deselect day: \(day)")
   }
   
+  func didChangeWeek(to date: Date) {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MMMM yyyy"
+    title = dateFormatter.string(from: date)
+    self.monthLabel.text = self.monthFormatter.string(from: date)
+  }
+  
+  func willChangeWeek(to date: Date) {
+    DispatchQueue.main.async {
+      self.monthLabel.text = self.monthFormatter.string(from: date)
+    }
+  }
+  
 }
