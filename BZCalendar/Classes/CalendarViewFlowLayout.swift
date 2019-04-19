@@ -14,15 +14,13 @@ final class CalendarViewFlowLayout: UICollectionViewFlowLayout {
   // MARK: - Properties
   
   private var cache: [UICollectionViewLayoutAttributes] = []
-  private var daysCount: Int = 0
   private var superViewFrame: CGRect = .zero
   private(set) var layoutType: CalendarType = .month
   
   // MARK: - Initialization
   
-  init(frame: CGRect, daysCount: Int) {
+  init(frame: CGRect) {
     super.init()
-    self.daysCount = daysCount
     superViewFrame = frame
     setup(frame: frame)
   }

@@ -56,7 +56,7 @@ open class CalendarView: UIView {
   }
   
   private lazy var collectionView: UICollectionView = {
-    let collectionView = UICollectionView(frame: bounds, collectionViewLayout: CalendarViewFlowLayout(frame: bounds, daysCount: 70))
+    let collectionView = UICollectionView(frame: bounds, collectionViewLayout: CalendarViewFlowLayout(frame: bounds))
     let nibName = UINib(nibName: DayCollectionViewCell.reuseIdentifier, bundle: Bundle(for: CalendarView.self))
     collectionView.register(nibName, forCellWithReuseIdentifier: DayCollectionViewCell.reuseIdentifier)
     collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -114,7 +114,7 @@ open class CalendarView: UIView {
   open override func layoutSubviews() {
     super.layoutSubviews()
     
-    let collectionViewLayout = CalendarViewFlowLayout(frame: bounds, daysCount: 70)
+    let collectionViewLayout = CalendarViewFlowLayout(frame: bounds)
     collectionView.setCollectionViewLayout(collectionViewLayout, animated: false)
     adjustCollectionViewPosition()
   }
@@ -170,6 +170,8 @@ open class CalendarView: UIView {
     addWeekdays()
     addCollectionView()
     setupCalendar(for: Date())
+    heightAnchor.constraint(equalTo: widthAnchor,
+                            multiplier: intrinsicContentSize.height/intrinsicContentSize.width).isActive = true
   }
   
   private func addWeekdays() {
