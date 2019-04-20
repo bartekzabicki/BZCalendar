@@ -329,6 +329,7 @@ open class CalendarView: UIView {
       heightConstraint = heightAnchor.constraint(equalToConstant: constant)
       heightConstraint?.isActive = true
     }
+    layoutIfNeeded()
   }
   
 }
