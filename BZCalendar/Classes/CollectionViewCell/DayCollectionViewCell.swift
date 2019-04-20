@@ -49,7 +49,6 @@ class DayCollectionViewCell: UICollectionViewCell {
   private(set) var viewModel: ViewModel?
   private lazy var selectionLayer: CAShapeLayer = {
     let layer = CAShapeLayer()
-    layer.shouldRasterize = true
     layer.strokeStart = 0
     return layer
   }()

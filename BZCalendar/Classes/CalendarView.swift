@@ -46,16 +46,9 @@ open class CalendarView: UIView {
   
   // MARK: - Properties
   
-  static let defaultFullHeight: CGFloat = 271
-  static let defaultCompactHeight: CGFloat = 125
-  
   @IBInspectable public var calendarInsets: UIEdgeInsets = .zero
   @IBInspectable public var areSwipeGestureRecognizersActive = true
   @IBInspectable public var isSelectingDaysActive = true
-  
-  override open var intrinsicContentSize: CGSize {
-    return CGSize(width: 343, height: 271)
-  }
   
   private lazy var collectionView: UICollectionView = {
     let collectionView = UICollectionView(frame: bounds,
@@ -65,6 +58,7 @@ open class CalendarView: UIView {
     collectionView.translatesAutoresizingMaskIntoConstraints = false
     collectionView.showsHorizontalScrollIndicator = false
     collectionView.backgroundColor = backgroundColor
+    collectionView.alwaysBounceVertical = false
     return collectionView
   }()
   private var collectionViewLayout: CalendarViewFlowLayout {
@@ -101,7 +95,8 @@ open class CalendarView: UIView {
   private(set) var calendarType: CalendarType = .month
   
   public weak var delegate: CalendarViewDelegate?
-
+  private var heightConstraint: NSLayoutConstraint?
+  
   // MARK: - Initialization
   
   public override init(frame: CGRect) {
@@ -120,6 +115,7 @@ open class CalendarView: UIView {
     let collectionViewLayout = CalendarViewFlowLayout(frame: bounds, layoutType: calendarType)
     collectionView.setCollectionViewLayout(collectionViewLayout, animated: false)
     adjustCollectionViewPosition()
+    adjustHeightConstraint()
   }
   
   // MARK: - Functions
@@ -165,16 +161,18 @@ open class CalendarView: UIView {
     setupCalendar(for: currentDisplayedDate)
     collectionViewLayout.changeType(to: calendarType)
     collectionView.collectionViewLayout.invalidateLayout()
+    collectionView.collectionViewLayout.prepare()
+    adjustHeightConstraint()
   }
   
   // MARK: - Private Functions
   
   internal func setupView() {
+    translatesAutoresizingMaskIntoConstraints = false
     addWeekdays()
     addCollectionView()
     setupCalendar(for: Date())
-    heightAnchor.constraint(equalTo: widthAnchor,
-                            multiplier: intrinsicContentSize.height/intrinsicContentSize.width).isActive = true
+    adjustHeightConstraint()
   }
   
   private func addWeekdays() {
@@ -189,7 +187,7 @@ open class CalendarView: UIView {
       label.font = .systemFont(ofSize: 13)
       label.textColor = UIColor(hexString: "BDCDD1")
       return label
-    }.forEach({ weekdaysStackView.addArrangedSubview($0) })
+      }.forEach({ weekdaysStackView.addArrangedSubview($0) })
   }
   
   private func addCollectionView() {
@@ -322,7 +320,17 @@ open class CalendarView: UIView {
                                                                 month: calendar.component(.month, from: monthDate),
                                                                 day: $0)) }
   }
-
+  
+  private func adjustHeightConstraint() {
+    let constant = collectionViewLayout.collectionViewContentSize.height + weekdaysStackView.bounds.height
+    if let heightConstraint = heightConstraint {
+      heightConstraint.constant = constant
+    } else {
+      heightConstraint = heightAnchor.constraint(equalToConstant: constant)
+      heightConstraint?.isActive = true
+    }
+  }
+  
 }
 
 extension CalendarView: CalendarCollectionViewActionDelegate {
