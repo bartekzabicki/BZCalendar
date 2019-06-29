@@ -137,6 +137,7 @@ open class CalendarView: UIView {
   public func select(date: Date) {
     guard !selectedDates.contains(date) else { return }
     selectedDates.append(date)
+    reloadData()
   }
   
   public func select(dates: [Date]) {
@@ -336,18 +337,22 @@ open class CalendarView: UIView {
 
 extension CalendarView: CalendarCollectionViewActionDelegate {
   func didChangeDate(to date: Date) {
+    let date = calendar.startOfDay(for: date)
     currentDisplayedDate = date
     setupCalendar(for: currentDisplayedDate)
     delegate?.didChangeDate(to: currentDisplayedDate)
   }
   
   func willChangeDate(to date: Date) {
+    let date = calendar.startOfDay(for: date)
     delegate?.willChangeDate(to: date)
   }
   
   func didTapOn(date: Date, indexPath: IndexPath) {
+    let date = calendar.startOfDay(for: date)
     guard isSelectingDaysActive else {
       select(dates: [date])
+      delegate?.didSelect(day: date)
       return
     }
     let isSelected = collectionViewDataSource
