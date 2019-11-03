@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '11.0'
 
-  s.dependency 'Unicorns', '~> 0.2.0'
+  s.dependency 'Unicorns'
   s.source_files = 'BZCalendar/Classes/**/*'
   s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
   s.resource_bundles = {

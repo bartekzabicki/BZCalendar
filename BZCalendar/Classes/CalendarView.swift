@@ -208,7 +208,6 @@ open class CalendarView: UIView {
     adjustCollectionViewPosition()
   }
   
-  
   private func adjustCollectionViewPosition() {
     collectionView.contentOffset.x = collectionView.bounds.width * CGFloat(elementsOnSides)
   }

@@ -7,6 +7,7 @@
 //
 
 import Unicorns
+import UIKit
 
 internal struct CalendarCollectionViewDataRequest {
   let elements: [CalendarView.Element]
