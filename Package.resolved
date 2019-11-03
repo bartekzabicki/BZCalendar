@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Unicorns",
+        "repositoryURL": "https://github.com/bartekzabicki/Unicorns.git",
+        "state": {
+          "branch": null,
+          "revision": "f15e623a926beb85bd14c5d55d6a88a575f45064",
+          "version": "0.2.5"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
