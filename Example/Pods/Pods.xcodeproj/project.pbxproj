@@ -14,7 +14,6 @@
 		1816BC4B6F6E909ADB2E0098C04F0E63 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA9E717DADE2A991778157FEA29FF65 /* UITableViewExtension.swift */; };
 		1826DAA527FC5E79097DBD9042CFFDD0 /* Unicorns-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 160C362F43DFFD69D0DD7822C72BBD17 /* Unicorns-dummy.m */; };
 		1E5953B077E0C963067D6533753D466A /* UISegmentControlExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDED112C47E9EF82307254D6D0FD646 /* UISegmentControlExtension.swift */; };
-		2415836E8B7710C9DF22737B3AEFA8AF /* DayCollectionViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 06E2FB0D8C8A9B70B414F6FE840B5196 /* DayCollectionViewCell.xib */; };
 		29F601C4355B79C0252F297ED33276B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26FB7F13DDC74780ACE885A896B65B7F /* Foundation.framework */; };
 		3A31350A98AB6C1EA0166163306D2242 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92789623D8E65B9FF2CC0986B37312E9 /* Networking.swift */; };
 		3CA2EE308DAFB5894B3026334F28103D /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4A696F184C9AF3BCADB843DC4F26F5 /* UIColorExtension.swift */; };
@@ -96,7 +95,6 @@
 		0004F7DE97712DC4991F0728E850D67B /* CGSizeExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CGSizeExtension.swift; path = Unicorns/Classes/Extensions/CGSizeExtension.swift; sourceTree = "<group>"; };
 		0524B9CFA96E51392071496D6FFF07F8 /* Pods-BZCalendar_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BZCalendar_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		0655B9267B6C4442301FBF6A55366F17 /* Pods-BZCalendar_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BZCalendar_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		06E2FB0D8C8A9B70B414F6FE840B5196 /* DayCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = DayCollectionViewCell.xib; sourceTree = "<group>"; };
 		09FFF40A1E8EA3FEB2D97155DB58B905 /* ImageCropViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageCropViewController.swift; path = Unicorns/Classes/Controllers/ImageCropViewController/ImageCropViewController.swift; sourceTree = "<group>"; };
 		0EDED112C47E9EF82307254D6D0FD646 /* UISegmentControlExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UISegmentControlExtension.swift; path = Unicorns/Classes/Extensions/UISegmentControlExtension.swift; sourceTree = "<group>"; };
 		1238F9CB601BA0DE35A109BDE21192D8 /* DayCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DayCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -378,7 +376,6 @@
 			isa = PBXGroup;
 			children = (
 				1238F9CB601BA0DE35A109BDE21192D8 /* DayCollectionViewCell.swift */,
-				06E2FB0D8C8A9B70B414F6FE840B5196 /* DayCollectionViewCell.xib */,
 			);
 			name = CollectionViewCell;
 			path = BZCalendar/Classes/CollectionViewCell;
@@ -662,7 +659,6 @@
 				CE3153E30B7ACE4C97D9F3DC370E5B8E /* CalendarViewDataSource+Delegate.swift in Sources */,
 				A29414561BA1D654338CB2FA46E1D053 /* CalendarViewFlowLayout.swift in Sources */,
 				91BBDC5B6B3C24506D0DEE6A8B138BBE /* DayCollectionViewCell.swift in Sources */,
-				2415836E8B7710C9DF22737B3AEFA8AF /* DayCollectionViewCell.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

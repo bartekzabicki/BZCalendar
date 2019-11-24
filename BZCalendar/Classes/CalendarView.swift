@@ -53,8 +53,7 @@ open class CalendarView: UIView {
   private lazy var collectionView: UICollectionView = {
     let collectionView = UICollectionView(frame: bounds,
                                           collectionViewLayout: CalendarViewFlowLayout(frame: bounds, layoutType: calendarType))
-    let nibName = UINib(nibName: DayCollectionViewCell.reuseIdentifier, bundle: Bundle(for: CalendarView.self))
-    collectionView.register(nibName, forCellWithReuseIdentifier: DayCollectionViewCell.reuseIdentifier)
+    collectionView.register(DayCollectionViewCell.self, forCellWithReuseIdentifier: DayCollectionViewCell.reuseIdentifier)
     collectionView.translatesAutoresizingMaskIntoConstraints = false
     collectionView.showsHorizontalScrollIndicator = false
     collectionView.backgroundColor = backgroundColor

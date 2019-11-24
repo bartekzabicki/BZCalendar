@@ -6,7 +6,6 @@
 //  Copyright © 2019 Bartlomiej Zabicki. All rights reserved.
 //
 
-import Unicorns
 import UIKit
 
 internal struct CalendarCollectionViewDataRequest {

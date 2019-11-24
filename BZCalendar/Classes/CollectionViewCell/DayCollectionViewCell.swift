@@ -29,8 +29,20 @@ class DayCollectionViewCell: UICollectionViewCell {
   
   // MARK: - Outlets
   
-  @IBOutlet weak var innerView: UIView!
-  @IBOutlet weak var dayLabel: UILabel!
+  private lazy var innerView: UIView = {
+    var view = UIView()
+    view.backgroundColor = .clear
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
+  }()
+  private lazy var dayLabel: UILabel = {
+    let label = UILabel()
+    label.backgroundColor = .clear
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.text = "1"
+    label.textAlignment = .center
+    return label
+  }()
   
   // MARK: - Structures
   
@@ -55,11 +67,14 @@ class DayCollectionViewCell: UICollectionViewCell {
   
   // MARK: - Lifecycle
   
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    reloadSelectionLayer(with: (selectionLayer.path = selectionLayerPath(state: .none)))
-    selectionLayer.zPosition = -1
-    layer.insertSublayer(selectionLayer, below: innerView.layer)
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    setupLayout()
+  }
+  
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    setupLayout()
   }
   
   override func layoutSubviews() {
@@ -78,6 +93,17 @@ class DayCollectionViewCell: UICollectionViewCell {
   }
   
   // MARK: - Private Functions
+  
+  private func setupLayout() {
+    addSubview(innerView)
+    innerView.addSubview(dayLabel)
+    anchor(view: innerView, to: self)
+    anchor(view: dayLabel, to: innerView)
+    
+    reloadSelectionLayer(with: (selectionLayer.path = selectionLayerPath(state: .none)))
+    selectionLayer.zPosition = -1
+    layer.insertSublayer(selectionLayer, below: innerView.layer)
+  }
   
   private func adjustDay(to dayState: MonthDayType) {
     switch dayState {
@@ -136,6 +162,13 @@ class DayCollectionViewCell: UICollectionViewCell {
     CATransaction.setDisableActions(true)
     clousure()
     CATransaction.commit()
+  }
+  
+  private func anchor(view: UIView, to superview: UIView) {
+    view.topAnchor.constraint(equalTo: superview.topAnchor).isActive = true
+    view.leadingAnchor.constraint(equalTo: superview.leadingAnchor).isActive = true
+    view.trailingAnchor.constraint(equalTo: superview.trailingAnchor).isActive = true
+    view.bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
   }
   
 }
